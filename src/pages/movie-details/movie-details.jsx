@@ -20,17 +20,14 @@ class MovieDetails extends React.Component {
     this.setState({ movie: movie.data })
   }
   componentDidMount() {
-    console.log(this.props)
     this.fetchMovieDetails()
   }
   movieTrailer = async () => {
     const movie_id = await axios.get(`https://api.themoviedb.org/3/${this.props.match.params.type}/${this.state.movie.id}/videos?api_key=${API_KEY}&language=en-US`)
-    console.log(movie_id.data.results[0].key)
     window.location.href = `https://www.youtube.com/watch?v=${movie_id.data.results[0].key}`
   }
   render() {
     const movie = this.state.movie
-    console.log(movie)
     return (
       <div>
         <Nav />
